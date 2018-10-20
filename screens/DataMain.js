@@ -53,7 +53,7 @@ const DataMain = (props) => {
 const styles = {
   wrapperStyle: {
     flex: 1,
-    borderBottomWidth: 1,
+    //borderBottomWidth: 1,
     flexDirection: 'row',
     justifyContent:'center',
     alignItems: 'center',

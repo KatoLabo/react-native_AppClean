@@ -109,13 +109,16 @@ class Home extends Component {
                 <DataMain dataInfo={inputdata} />
               </View>
 
-              <View style={[styles.box_bottom,  {backgroundColor: '#F9CDAD'}]}>
+              <View style={styles.box_middle}>
+              </View>
+
+              <View style={styles.box_bottom}>
                 <View style={styles.scoreBox}>
                   <View style={styles.box_bottom_over_top}>
                     <View
                       style={[styles.eachscoreBox, {marginLeft: 80}, {backgroundColor: '#9DDCDC'}]}
                       >
-                      <LabelBox label={'きたなさ'} />
+                      <LabelBox label={'きれいさ'} />
                       <View style={styles.eachscoredisplay}>
                         <Text style={styles.scoreText}>{inputdata.id}</Text>
                       </View>
@@ -138,6 +141,9 @@ class Home extends Component {
                     </View>
                   </View>
                 </View>
+
+                <View style={styles.scoreBox_middle} />
+
                 <View style={styles.totalscoreBox}>
                   <TotalLabelBox label={'とくてん'} />
                   <View style={styles.totalscoredisplay}>
@@ -172,6 +178,10 @@ const styles = StyleSheet.create({
   },
   box_top: {
     flex: 7,
+    borderRadius: 30,
+  },
+  box_middle: {
+    flex: 0.1,
   },
   box_bottom: {
     flex: 4,
@@ -187,12 +197,17 @@ const styles = StyleSheet.create({
   scoreBox: {
     flex: 2,
     // borderWidth: 1,
-    // borderRadius: 30,
+    borderRadius: 30,
+    backgroundColor: '#FFF4E1',
+  },
+  scoreBox_middle : {
+    flex: 0.03,
   },
   totalscoreBox: {
     flex: 1,
-    borderWidth: 1,
+    //borderWidth: 1,
     borderRadius: 30,
+    backgroundColor: "#FFF4E1",
   },
   eachscoreBox: {
     borderWidth: 2,
@@ -223,15 +238,19 @@ const styles = StyleSheet.create({
   },
   labelText: {
     fontSize: 18,
+    fontFamily: 'serif',
   },
   totallabelText: {
     fontSize: 30,
+    fontFamily: 'serif',
   },
   scoreText: {
     fontSize: 50,
+    fontFamily: 'sans-serif-medium',
   },
   totalscoreText: {
-    fontSize: 120,
+    fontSize: 100,
+    fontFamily: 'sans-serif-medium',
   },
 });
 
