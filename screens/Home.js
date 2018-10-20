@@ -33,16 +33,31 @@ class Home extends Component {
     this.state = {
       inputdata: [],
       refreshing: false,
-      windowHeight: Dimensions.get('window').height,
-      windowWidth: Dimensions.get('window').width,
+      refreshing2: true,
+      // windowHeight: Dimensions.get('window').height,
+      // windowWidth: Dimensions.get('window').width,
     }
   }
 
   componentWillMount() {
-    this.fetchData().then(() => {
+    //this.setState({refreshing2: true});
+    this.fetchData()
+    .then(() => {
       this.setState({refreshing: false});
+      this.setState({refreshing2: true});
+    })
+    .then(()=>{
+      setTimeout( () => {
+        this.setState({refreshing2: false})
+      }, 3000)
     });
   }
+
+  // componentWillMount() {
+  //   this._start().then(() => {
+  //     this.setState({refreshing2: false});
+  //   });
+  // }
 
   async fetchData () {
         axios.get('https://mysterious-caverns-19353.herokuapp.com/users/latest')
@@ -51,74 +66,90 @@ class Home extends Component {
          })
   }
 
-_onRefresh = () => {
-   this.setState({refreshing: true});
-   this.fetchData().then(() => {
-     this.setState({refreshing: false});
-   });
- }
+// _start = () => {
+//    this.setState({refreshing2: true});
+//    this.fetchData().then(() => {
+//      this.setState({refreshing: false});
+//    });
+//  }
+
+ _onRefresh = () => {
+    this.setState({refreshing: true});
+    this.fetchData().then(() => {
+      this.setState({refreshing: false});
+    });
+  }
 
   render() {
-    const { inputdata } = this.state
+    const { inputdata,refreshing2 } = this.state
     console.log("call render")
     console.log(inputdata)
+    console.log(refreshing2)
     const {windowWidth} = this.state
 
-    return (
-      <ScrollView
-        contentContainerStyle={styles.contentContainer}
-        refreshControl={
-          <RefreshControl
-            refreshing={this.state.refreshing}
-            onRefresh={this._onRefresh}
-          />
-          }
-        >
-        <View style={styles.container}>
-          <View style={styles.box_top}>
-            <DataMain dataInfo={inputdata} />
-          </View>
-
-          <View style={styles.box_bottom}>
-            <View style={styles.scoreBox}>
-              <View style={styles.box_bottom_over_top}>
-                <View
-                  style={[styles.eachscoreBox, {marginLeft: 80}]}
-                  >
-                  <LabelBox label={'きたなさ'} />
-                  <View style={styles.eachscoredisplay}>
-                    <Text style={styles.scoreText}>{inputdata.id}</Text>
-                  </View>
-                </View>
-              </View>
-              <View style={styles.box_bottom_over_bot}>
-                <View
-                  style={[styles.eachscoreBox, {marginLeft: 25}]}
-                  >
-                  <LabelBox label={'におい'} />
-                  <View style={styles.eachscoredisplay}>
-                    <Text style={styles.scoreText}>{inputdata.id}</Text>
-                  </View>
-                </View>
-                <View style={[styles.eachscoreBox,{marginLeft: 6}]}>
-                  <LabelBox label={'ほこり'} />
-                  <View style={styles.eachscoredisplay}>
-                    <Text style={styles.scoreText}>{inputdata.id}</Text>
-                  </View>
-                </View>
-              </View>
-            </View>
-            <View style={styles.totalscoreBox}>
-              <TotalLabelBox label={'総合点'} />
-              <View style={styles.totalscoredisplay}>
-                <Text style={styles.totalscoreText}>{inputdata.id}</Text>
-              </View>
-            </View>
-          </View>
+    if (refreshing2 == true) {
+      return (
+        <View>
+          <Text>おはよう！</Text>
         </View>
+      );
+      } else {
+      return (
+          <ScrollView
+            contentContainerStyle={styles.contentContainer}
+            refreshControl={
+              <RefreshControl
+                refreshing={this.state.refreshing}
+                onRefresh={this._onRefresh}
+              />
+              }
+            >
+            <View style={styles.container}>
+              <View style={styles.box_top}>
+                <DataMain dataInfo={inputdata} />
+              </View>
 
-      </ScrollView>
-    );
+              <View style={styles.box_bottom}>
+                <View style={styles.scoreBox}>
+                  <View style={styles.box_bottom_over_top}>
+                    <View
+                      style={[styles.eachscoreBox, {marginLeft: 80}]}
+                      >
+                      <LabelBox label={'きたなさ'} />
+                      <View style={styles.eachscoredisplay}>
+                        <Text style={styles.scoreText}>{inputdata.id}</Text>
+                      </View>
+                    </View>
+                  </View>
+                  <View style={styles.box_bottom_over_bot}>
+                    <View
+                      style={[styles.eachscoreBox, {marginLeft: 25}]}
+                      >
+                      <LabelBox label={'におい'} />
+                      <View style={styles.eachscoredisplay}>
+                        <Text style={styles.scoreText}>{inputdata.id}</Text>
+                      </View>
+                    </View>
+                    <View style={[styles.eachscoreBox,{marginLeft: 6}]}>
+                      <LabelBox label={'ほこり'} />
+                      <View style={styles.eachscoredisplay}>
+                        <Text style={styles.scoreText}>{inputdata.id}</Text>
+                      </View>
+                    </View>
+                  </View>
+                </View>
+                <View style={styles.totalscoreBox}>
+                  <TotalLabelBox label={'総合点'} />
+                  <View style={styles.totalscoredisplay}>
+                    <Text style={styles.totalscoreText}>{inputdata.id}</Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+
+          </ScrollView>
+                );
+        }
   }
 }
 
