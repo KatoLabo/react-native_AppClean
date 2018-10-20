@@ -47,7 +47,7 @@ class Home extends Component {
     .then(()=>{
       setTimeout( () => {
         this.setState({refreshing2: false})
-      }, 2000)
+      }, 3000)
     });
   }
 
@@ -59,17 +59,23 @@ class Home extends Component {
          })
   }
 
-// _start = () => {
-//    this.setState({refreshing2: true});
-//    this.fetchData().then(() => {
-//      this.setState({refreshing: false});
-//    });
-//  }
-
  _onRefresh = () => {
     this.setState({refreshing: true});
+    //ラズパイ側に投げる,計算するように指示，何かしらデータが返ってくる
+    //URLに注意
+    axios.get('https://mysterious-caverns-19353.herokuapp.com/users/latest')
+     .then((emp) => {
+       this.setState({ tmpdata: emp.data });
+     });
+    //データベースの最新情報を取得
     this.fetchData().then(() => {
       this.setState({refreshing: false});
+    })
+    //15秒後に自動更新
+    .then(()=>{
+      setTimeout( () => {
+        this.fetchData()
+      }, 15000)
     });
   }
 
