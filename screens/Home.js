@@ -7,9 +7,13 @@ import {
   ScrollView,
   RefreshControl,
   Dimensions,
+  Image,
 } from 'react-native';
+//import {DangerZone} from "expo";
 import axios from 'axios';
 import DataMain from './DataMain';
+//import LottieView from 'lottie-react-native';
+//const {Lottie} = DangerZone;
 
 const LabelBox = (props) => {
   return (
@@ -45,19 +49,16 @@ class Home extends Component {
     .then(() => {
       this.setState({refreshing: false});
       this.setState({refreshing2: true});
+      //console.log("aaaa")
+      //this.animation.play();
     })
     .then(()=>{
       setTimeout( () => {
         this.setState({refreshing2: false})
-      }, 3000)
+      }, 5000)
     });
   }
 
-  // componentWillMount() {
-  //   this._start().then(() => {
-  //     this.setState({refreshing2: false});
-  //   });
-  // }
 
   async fetchData () {
         axios.get('https://mysterious-caverns-19353.herokuapp.com/users/latest')
@@ -89,8 +90,9 @@ class Home extends Component {
 
     if (refreshing2 == true) {
       return (
-        <View>
-          <Text>おはよう！</Text>
+        <View style={styles.anime}>
+          <Image
+            source={require("../assets/images/rabit.gif")}/>
         </View>
       );
       } else {
@@ -153,26 +155,14 @@ class Home extends Component {
   }
 }
 
-
-
-// <View style={styles.scoreLine}>
-//   <View style={[styles.scoreBox,{flex: 1}]}>
-//     <Text style={styles.scoreText}>{inputdata.id}</Text>
-//   </View>
-//   <View style={[styles.scoreBox,{flex: 1}]}>
-//     <Text style={styles.scoreText}>{inputdata.id}</Text>
-//   </View>
-//   <View style={[styles.scoreBox,{flex: 1}]}>
-//     <Text style={styles.scoreText}>{inputdata.id}</Text>
-//   </View>
-//   <View style={[styles.scoreBox,{flex: 2}]}>
-//     <Text style={styles.totalscoreText}>{inputdata.id}</Text>
-//   </View>
-// </View>
-// </View>
-
-
 const styles = StyleSheet.create({
+  anime: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '100%',
+    height: '100%',
+  },
   contentContainer: {
   flex: 1,
   flexDirection: 'column'
