@@ -11,15 +11,15 @@ const DataMain = (props) => {
   const score = id //実際は違う
   const comment = updated_at //実際は違う
   if (score >= 80) {
-    src = require('../assets/images/kuma1.png')
+    src = require('../assets/images/kuma_1.gif')
   } else if (score >= 60) {
-    src = require('../assets/images/kuma2.png')
+    src = require('../assets/images/kuma_2.gif')
   } else if (score >= 40){
-    src = require('../assets/images/kuma3.png')
+    src = require('../assets/images/kuma_3.gif')
   } else if (score >= 20){
-    src = require('../assets/images/kuma4.png')
+    src = require('../assets/images/kuma_4.gif')
   } else {
-    src = require('../assets/images/kuma5.png');
+    src = require('../assets/images/kuma_5.gif');
   }
 
   return (

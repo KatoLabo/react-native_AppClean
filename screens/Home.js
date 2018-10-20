@@ -12,10 +12,17 @@ import axios from 'axios';
 import DataMain from './DataMain';
 
 const LabelBox = (props) => {
-  const flex = props.flex ? props.flex: 1
   return (
-    <View style={[styles.labelBox, {flex: flex}]}>
+    <View style={styles.labelBox}>
       <Text style={styles.labelText}>{props.label}</Text>
+    </View>
+  )
+}
+
+const TotalLabelBox = (props) => {
+  return (
+    <View style={styles.labelBox}>
+      <Text style={styles.totallabelText}>{props.label}</Text>
     </View>
   )
 }
@@ -26,14 +33,15 @@ class Home extends Component {
     this.state = {
       inputdata: [],
       refreshing: false,
+      windowHeight: Dimensions.get('window').height,
+      windowWidth: Dimensions.get('window').width,
     }
   }
 
   componentWillMount() {
-    axios.get('https://mysterious-caverns-19353.herokuapp.com/users/latest')
-      .then((res) => {
-        this.setState({ inputdata: res.data });
-      });
+    this.fetchData().then(() => {
+      this.setState({refreshing: false});
+    });
   }
 
   async fetchData () {
@@ -75,7 +83,7 @@ _onRefresh = () => {
             <View style={styles.scoreBox}>
               <View style={styles.box_bottom_over_top}>
                 <View
-                  style={[styles.eachscoreBox, {marginLeft: 65}]}
+                  style={[styles.eachscoreBox, {marginLeft: 80}]}
                   >
                   <LabelBox label={'きたなさ'} />
                   <View style={styles.eachscoredisplay}>
@@ -84,13 +92,15 @@ _onRefresh = () => {
                 </View>
               </View>
               <View style={styles.box_bottom_over_bot}>
-                <View style={styles.eachscoreBox}>
+                <View
+                  style={[styles.eachscoreBox, {marginLeft: 25}]}
+                  >
                   <LabelBox label={'におい'} />
                   <View style={styles.eachscoredisplay}>
                     <Text style={styles.scoreText}>{inputdata.id}</Text>
                   </View>
                 </View>
-                <View style={styles.eachscoreBox}>
+                <View style={[styles.eachscoreBox,{marginLeft: 6}]}>
                   <LabelBox label={'ほこり'} />
                   <View style={styles.eachscoredisplay}>
                     <Text style={styles.scoreText}>{inputdata.id}</Text>
@@ -99,7 +109,7 @@ _onRefresh = () => {
               </View>
             </View>
             <View style={styles.totalscoreBox}>
-              <LabelBox label={'総合点'} />
+              <TotalLabelBox label={'総合点'} />
               <View style={styles.totalscoredisplay}>
                 <Text style={styles.totalscoreText}>{inputdata.id}</Text>
               </View>
@@ -141,7 +151,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   box_top: {
-    flex: 9,
+    flex: 7,
     //borderBottomWidth: 1,
     //flexDirection: 'row',
   },
@@ -151,22 +161,43 @@ const styles = StyleSheet.create({
   },
   box_bottom_over_top: {
     flex: 1,
-    //borderWidth: 0.5,
+    //borderBottomWidth: 1,
   },
   box_bottom_over_bot: {
-    flex: 1,
-    //borderWidth: 0.5,
+    flex: 1.1,
     flexDirection: 'row',
   },
-  labelBox: {
+  scoreBox: {
+    flex: 2,
+  },
+  totalscoreBox: {
     flex: 1,
+    borderWidth: 0.5,
+  },
+  eachscoreBox: {
+    // flex: 1,
+    // alignItems: 'center',
+    //justifyContent: 'center',
+    borderWidth: 2,
+    borderBottomLeftRadius: 100,
+    borderBottomRightRadius: 100,
+    borderTopLeftRadius: 100,
+    borderTopRightRadius: 100,
+    //width: Dimensions.get('window').width * 0.33,
+    height: Dimensions.get('window').height / 6.6,
+    width: Dimensions.get('window').height / 6.6,
+    //flexDirection: 'column',
+    borderColor: 'black',
+  },
+  labelBox: {
+    flex: 2,
     alignItems: 'center',
     justifyContent: 'center',
     width: '100%',
     height: '100%',
   },
   eachscoredisplay: {
-    flex: 2,
+    flex: 3,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -175,34 +206,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  scoreBox: {
-    flex: 2,
-  },
-  eachscoreBox: {
-    // flex: 1,
-    // alignItems: 'center',
-    justifyContent: 'center',
-    borderWidth: 1,
-    borderBottomLeftRadius: 100,
-    borderBottomRightRadius: 100,
-    borderTopLeftRadius: 100,
-    borderTopRightRadius: 100,
-    //width: Dimensions.get('window').width * 0.33,
-    height: Dimensions.get('window').height / 8.1,
-    width: Dimensions.get('window').height / 8.1,
-    flexDirection: 'column',
-  },
-  totalscoreBox: {
-    // alignItems: 'center',
-    // justifyContent: 'center',
-    // flexDirection: 'row',
-    // width: '100%',
-    // height: '100%',
-    // borderWidth: 0.5,
-    // borderColor: "black",
-    flex: 1,
-    borderWidth: 0.5,
-  },
   labelText: {
     // backgroundColor: "lightblue",
     // padding: 1,
@@ -210,7 +213,10 @@ const styles = StyleSheet.create({
     // borderWidth: 1,
     // borderColor: "lightblue",
     // overflow: "hidden",
-    fontSize: 20,
+    fontSize: 15,
+  },
+  totallabelText: {
+    fontSize: 30,
   },
   scoreText: {
     fontSize: 50,
