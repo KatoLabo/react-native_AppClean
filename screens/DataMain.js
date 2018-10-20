@@ -9,19 +9,18 @@ const DataMain = (props) => {
   //スコアによって表示画像を変化
   let src = '';
   const score = id //実際は違う
-  const comment = name //実際は違う
-  if (score >= 81) {
+  const comment = updated_at //実際は違う
+  if (score >= 80) {
     src = require('../assets/images/kuma1.png')
-  } else if (score >= 61) {
+  } else if (score >= 60) {
     src = require('../assets/images/kuma2.png')
-  } else if (score >= 41){
+  } else if (score >= 40){
     src = require('../assets/images/kuma3.png')
-  } else if (score >= 21){
+  } else if (score >= 20){
     src = require('../assets/images/kuma4.png')
   } else {
     src = require('../assets/images/kuma5.png');
   }
-
 
   return (
         <View style={styles.wrapperStyle}>
@@ -32,13 +31,14 @@ const DataMain = (props) => {
               backgroundColor="#D6EAF8"
               width={150}
               height={200}
+              triangleOffset="17%"
               triangleDirection="right"
               borderWidth={2}
               borderRadius={20}
               triangleSize={20}
             >
               <View style={styles.textdisplay}>
-                <Text style={styles.textStyle}>{updated_at}</Text>
+                <Text style={styles.textStyle}>{comment}</Text>
               </View>
             </Balloon>
           </View>
@@ -63,7 +63,6 @@ const styles = {
     justifyContent:'center',
     alignItems: 'center',
     flexDirection: 'row',
-    //borderWidth: 1,
   },
   textdisplay: {
     flex: 1,
@@ -77,11 +76,11 @@ const styles = {
   },
   imgScreen: {
     flex: 3,
-    // alignItems: 'center',
-    // justifyContent: 'center',
-    //width: 25,
-    height: 370,
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: 400,
     flexDirection: 'row',
+    resizeMode: 'contain',
   },
   balloon: {
     flex: 1,
