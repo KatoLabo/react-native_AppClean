@@ -78,6 +78,7 @@ const styles = StyleSheet.create({
   },
   navBar: {
     backgroundColor: '#45a2ff'
+    //backgroundColor: '#FFBC61'
   },
   navTitle: {
     color: 'white'

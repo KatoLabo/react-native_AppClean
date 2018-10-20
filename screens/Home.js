@@ -9,11 +9,8 @@ import {
   Dimensions,
   Image,
 } from 'react-native';
-//import {DangerZone} from "expo";
 import axios from 'axios';
 import DataMain from './DataMain';
-//import LottieView from 'lottie-react-native';
-//const {Lottie} = DangerZone;
 
 const LabelBox = (props) => {
   return (
@@ -38,24 +35,19 @@ class Home extends Component {
       inputdata: [],
       refreshing: false,
       refreshing2: true,
-      // windowHeight: Dimensions.get('window').height,
-      // windowWidth: Dimensions.get('window').width,
     }
   }
 
   componentWillMount() {
-    //this.setState({refreshing2: true});
     this.fetchData()
     .then(() => {
       this.setState({refreshing: false});
       this.setState({refreshing2: true});
-      //console.log("aaaa")
-      //this.animation.play();
     })
     .then(()=>{
       setTimeout( () => {
         this.setState({refreshing2: false})
-      }, 5000)
+      }, 2000)
     });
   }
 
@@ -107,15 +99,15 @@ class Home extends Component {
               }
             >
             <View style={styles.container}>
-              <View style={styles.box_top}>
+              <View style={[styles.box_top, {backgroundColor: '#9DDCDC'}]}>
                 <DataMain dataInfo={inputdata} />
               </View>
 
-              <View style={styles.box_bottom}>
+              <View style={[styles.box_bottom,  {backgroundColor: '#FFF4E1'}]}>
                 <View style={styles.scoreBox}>
                   <View style={styles.box_bottom_over_top}>
                     <View
-                      style={[styles.eachscoreBox, {marginLeft: 80}]}
+                      style={[styles.eachscoreBox, {marginLeft: 80}, {backgroundColor: '#9DDCDC'}]}
                       >
                       <LabelBox label={'きたなさ'} />
                       <View style={styles.eachscoredisplay}>
@@ -125,14 +117,14 @@ class Home extends Component {
                   </View>
                   <View style={styles.box_bottom_over_bot}>
                     <View
-                      style={[styles.eachscoreBox, {marginLeft: 25}]}
+                      style={[styles.eachscoreBox, {marginLeft: 25}, {backgroundColor: '#FFF4E1'}]}
                       >
                       <LabelBox label={'におい'} />
                       <View style={styles.eachscoredisplay}>
                         <Text style={styles.scoreText}>{inputdata.id}</Text>
                       </View>
                     </View>
-                    <View style={[styles.eachscoreBox,{marginLeft: 6}]}>
+                    <View style={[styles.eachscoreBox,{marginLeft: 6}, {backgroundColor: '#E67A7A'}]}>
                       <LabelBox label={'ほこり'} />
                       <View style={styles.eachscoredisplay}>
                         <Text style={styles.scoreText}>{inputdata.id}</Text>
@@ -141,7 +133,7 @@ class Home extends Component {
                   </View>
                 </View>
                 <View style={styles.totalscoreBox}>
-                  <TotalLabelBox label={'総合点'} />
+                  <TotalLabelBox label={'とくてん'} />
                   <View style={styles.totalscoredisplay}>
                     <Text style={styles.totalscoreText}>{inputdata.id}</Text>
                   </View>
@@ -162,6 +154,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width: '100%',
     height: '100%',
+    backgroundColor: '#FFF4E1'
   },
   contentContainer: {
   flex: 1,
@@ -173,8 +166,6 @@ const styles = StyleSheet.create({
   },
   box_top: {
     flex: 7,
-    //borderBottomWidth: 1,
-    //flexDirection: 'row',
   },
   box_bottom: {
     flex: 4,
@@ -182,7 +173,6 @@ const styles = StyleSheet.create({
   },
   box_bottom_over_top: {
     flex: 1,
-    //borderBottomWidth: 1,
   },
   box_bottom_over_bot: {
     flex: 1.1,
@@ -196,18 +186,13 @@ const styles = StyleSheet.create({
     borderWidth: 0.5,
   },
   eachscoreBox: {
-    // flex: 1,
-    // alignItems: 'center',
-    //justifyContent: 'center',
     borderWidth: 2,
     borderBottomLeftRadius: 100,
     borderBottomRightRadius: 100,
     borderTopLeftRadius: 100,
     borderTopRightRadius: 100,
-    //width: Dimensions.get('window').width * 0.33,
     height: Dimensions.get('window').height / 6.6,
     width: Dimensions.get('window').height / 6.6,
-    //flexDirection: 'column',
     borderColor: 'black',
   },
   labelBox: {
@@ -223,17 +208,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   totalscoredisplay: {
-    flex: 3,
+    flex: 5,
     alignItems: 'center',
     justifyContent: 'center',
   },
   labelText: {
-    // backgroundColor: "lightblue",
-    // padding: 1,
-    // borderRadius: 20,
-    // borderWidth: 1,
-    // borderColor: "lightblue",
-    // overflow: "hidden",
     fontSize: 15,
   },
   totallabelText: {
@@ -243,7 +222,7 @@ const styles = StyleSheet.create({
     fontSize: 50,
   },
   totalscoreText: {
-    fontSize: 100,
+    fontSize: 120,
   },
 });
 
