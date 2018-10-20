@@ -105,11 +105,11 @@ class Home extends Component {
               }
             >
             <View style={styles.container}>
-              <View style={[styles.box_top, {backgroundColor: '#9DDCDC'}]}>
+              <View style={[styles.box_top, {backgroundColor: '#FFF4E1'}]}>
                 <DataMain dataInfo={inputdata} />
               </View>
 
-              <View style={[styles.box_bottom,  {backgroundColor: '#FFF4E1'}]}>
+              <View style={[styles.box_bottom,  {backgroundColor: '#F9CDAD'}]}>
                 <View style={styles.scoreBox}>
                   <View style={styles.box_bottom_over_top}>
                     <View
@@ -123,7 +123,7 @@ class Home extends Component {
                   </View>
                   <View style={styles.box_bottom_over_bot}>
                     <View
-                      style={[styles.eachscoreBox, {marginLeft: 25}, {backgroundColor: '#FFF4E1'}]}
+                      style={[styles.eachscoreBox, {marginLeft: 25}, {backgroundColor: '#F0E68C'}]}
                       >
                       <LabelBox label={'におい'} />
                       <View style={styles.eachscoredisplay}>
@@ -186,10 +186,13 @@ const styles = StyleSheet.create({
   },
   scoreBox: {
     flex: 2,
+    // borderWidth: 1,
+    // borderRadius: 30,
   },
   totalscoreBox: {
     flex: 1,
-    borderWidth: 0.5,
+    borderWidth: 1,
+    borderRadius: 30,
   },
   eachscoreBox: {
     borderWidth: 2,
@@ -219,7 +222,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   labelText: {
-    fontSize: 15,
+    fontSize: 18,
   },
   totallabelText: {
     fontSize: 30,
