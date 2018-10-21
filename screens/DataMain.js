@@ -3,13 +3,13 @@ import { View, Text, Image } from 'react-native';
 import Balloon from "react-native-balloon";
 
 const DataMain = (props) => {
-  const { id, name, updated_at } = props.dataInfo;
+  const { total_score, comment_name, mess, smell, dust } = props.dataInfo;
   const { wrapperStyle } = styles;
 
   //スコアによって表示画像を変化
   let src = '';
-  const score = id //実際は違う
-  const comment = updated_at //実際は違う
+  const score = total_score //実際は違う
+  const comment = comment_name //実際は違う
   if (score >= 80) {
     src = require('../assets/images/kuma_1.gif')
   } else if (score >= 60) {

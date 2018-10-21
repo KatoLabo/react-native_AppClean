@@ -41,7 +41,7 @@ class Home extends Component {
 
 
   async fetchData () {
-        axios.get('https://mysterious-caverns-19353.herokuapp.com/users/latest')
+        axios.get('https://morning-ravine-52217.herokuapp.com/messies/latest')
          .then((res) => {
            this.setState({ inputdata: res.data });
          })
@@ -123,7 +123,7 @@ class Home extends Component {
                   </View>
 
                   <View style={styles.totalscoredisplay}>
-                    <Text style={styles.totalscoreText}>{inputdata.id}</Text>
+                    <Text style={styles.totalscoreText}>{inputdata.total_score}</Text>
                   </View>
 
                 </View>

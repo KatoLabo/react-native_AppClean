@@ -3,12 +3,12 @@ import { View, ImageBackground,Image,Text } from 'react-native';
 
 
 const BackImage_3 = (props) => {
-  const { id, name, updated_at } = props.dataInfo;
+  const { total_score, comment_name, mess, smell, dust } = props.dataInfo;
   const { wrapperStyle } = styles;
 
   let src = '';
-  const score = id
-  const comment = updated_at
+  const score = total_score
+  const comment = comment_name
   if (score == 100) {
     src = require('../assets/images/colorbar/colorbar3_10.png')
   } else if (score >= 90) {
@@ -37,7 +37,7 @@ const BackImage_3 = (props) => {
       style={styles.kirakira}>
       <View style={styles.iconBox}>
         <Image
-          source={require("../assets/images/nose.png")}
+          source={require("../assets/images/dust.png")}
           style={styles.imgScreen}
           />
           </View>
@@ -47,7 +47,7 @@ const BackImage_3 = (props) => {
         </View>
 
         <View style={styles.eachscoreBox}>
-          <Text style={styles.scoreText}>{id}</Text>
+          <Text style={styles.scoreText}>{dust}</Text>
         </View>
     </ImageBackground>
   );

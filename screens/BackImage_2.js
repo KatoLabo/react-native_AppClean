@@ -3,12 +3,12 @@ import { View, ImageBackground,Image,Text } from 'react-native';
 
 
 const BackImage_2 = (props) => {
-  const { id, name, updated_at } = props.dataInfo;
+  const { total_score, comment_name, mess, smell, dust } = props.dataInfo;
   const { wrapperStyle } = styles;
 
   let src = '';
-  const score = id
-  const comment = updated_at
+  const score = total_score
+  const comment = comment_name
   if (score == 100) {
     src = require('../assets/images/colorbar/colorbar2_10.png')
   } else if (score >= 90) {
@@ -47,7 +47,7 @@ const BackImage_2 = (props) => {
         </View>
 
         <View style={styles.eachscoreBox}>
-          <Text style={styles.scoreText}>{id}</Text>
+          <Text style={styles.scoreText}>{smell}</Text>
         </View>
     </ImageBackground>
   );
