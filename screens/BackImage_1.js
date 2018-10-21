@@ -7,7 +7,7 @@ const BackImage_1 = (props) => {
   const { wrapperStyle } = styles;
 
   let src = '';
-  const score = total_score
+  const score = mess
   const comment = comment_name
   if (score == 100) {
     src = require('../assets/images/colorbar/colorbar1_10.png')
@@ -47,7 +47,7 @@ const BackImage_1 = (props) => {
         </View>
 
         <View style={styles.eachscoreBox}>
-          <Text style={styles.scoreText}>{mess}</Text>
+          <Text style={styles.scoreText}>{score}</Text>
         </View>
     </ImageBackground>
   );

@@ -35,7 +35,7 @@ class Home extends Component {
     .then(()=>{
       setTimeout( () => {
         this.setState({refreshing2: false})
-      }, 1000)
+      }, 5000)
     });
   }
 
@@ -78,7 +78,7 @@ class Home extends Component {
       return (
         <View style={styles.anime}>
           <Image
-            source={require("../assets/images/rabit.gif")}/>
+            source={require("../assets/images/rabit_loading.gif")}/>
         </View>
       );
       } else {
