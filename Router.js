@@ -39,7 +39,7 @@ const RouterComponent = () => {
         <Scene
           key='past_data'
           component={RailsViews}
-          url="https://www.google.co.jp/"
+          url="https://morning-ravine-52217.herokuapp.com/chart"
           title='Data'
           iconName='timeline'
           icon={TabBarIcon}
