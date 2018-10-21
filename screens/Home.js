@@ -12,22 +12,9 @@ import {
 } from 'react-native';
 import axios from 'axios';
 import DataMain from './DataMain';
-
-// const LabelBox = (props) => {
-//   return (
-//     <View style={styles.labelBox}>
-//       <Text style={styles.labelText}>{props.label}</Text>
-//     </View>
-//   )
-// }
-//
-// const TotalLabelBox = (props) => {
-//   return (
-//     <View style={styles.labelBox}>
-//       <Text style={styles.totallabelText}>{props.label}</Text>
-//     </View>
-//   )
-// }
+import BackImage_1 from './BackImage_1';
+import BackImage_2 from './BackImage_2';
+import BackImage_3 from './BackImage_3';
 
 class Home extends Component {
   constructor(props) {
@@ -116,59 +103,15 @@ class Home extends Component {
               <View style={styles.box_bottom}>
                 <View style={styles.scoreBox}>
                   <View style={styles.box_bottom_score}>
-                    <ImageBackground
-                      source={require("../assets/images/colorbar_2.png")}
-                      style={styles.kirakira}>
-                      <View style={styles.iconBox}>
-                        <Image
-                          source={require("../assets/images/kirakira.png")}
-                          style={styles.imgScreen}
-                          />
-                          </View>
-
-                        <View style={styles.labelBox}>
-                          <Text style={styles.labelText}>{'きれいさ'}</Text>
-                        </View>
-
-                        <View style={styles.eachscoreBox}>
-                          <Text style={styles.scoreText}>{inputdata.id}</Text>
-                        </View>
-                    </ImageBackground>
-                  </View>
-
-
-                  <View style={styles.box_bottom_score}>
-                    <View style={styles.iconBox}>
-                      <Image
-                        source={require("../assets/images/nose.png")}
-                        style={styles.imgScreen}
-                      />
-                    </View>
-
-                    <View style={styles.labelBox}>
-                      <Text style={styles.labelText}>{'におい'}</Text>
-                    </View>
-
-                    <View style={styles.eachscoreBox}>
-                      <Text style={styles.scoreText}>{inputdata.id}</Text>
-                    </View>
+                    <BackImage_1 dataInfo={inputdata} />
                   </View>
 
                   <View style={styles.box_bottom_score}>
-                    <View style={styles.iconBox}>
-                      <Image
-                        source={require("../assets/images/dust.png")}
-                        style={styles.imgScreen}
-                      />
-                    </View>
+                    <BackImage_2 dataInfo={inputdata} />
+                  </View>
 
-                    <View style={styles.labelBox}>
-                      <Text style={styles.labelText}>{'ほこり'}</Text>
-                    </View>
-
-                    <View style={styles.eachscoreBox}>
-                      <Text style={styles.scoreText}>{inputdata.id}</Text>
-                    </View>
+                  <View style={styles.box_bottom_score}>
+                    <BackImage_3 dataInfo={inputdata} />
                   </View>
                 </View>
 
@@ -247,40 +190,6 @@ const styles = StyleSheet.create({
     //borderWidth: 1,
     flexDirection: 'row',
   },
-  iconBox: {
-    flex: 1,
-    borderBottomWidth: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  imgScreen: {
-    flex: 1,
-    width: 60,
-    height: 20,
-  },
-  labelBox: {
-    flex: 2,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderBottomWidth: 1,
-  },
-  eachscoreBox: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    // borderBottomLeftRadius: 100,
-    // borderBottomRightRadius: 100,
-    // borderTopLeftRadius: 100,
-    // borderTopRightRadius: 100,
-    borderBottomWidth: 1,
-  },
-  kirakira: {
-    width: '100%',
-    height: '100%',
-    flexDirection: 'row',
-    //resizeMode: 'cover',
-    //backgroundColor: 'transparent',
-  },
   totallabelBox: {
     flex: 2,
     alignItems: 'center',
@@ -290,10 +199,6 @@ const styles = StyleSheet.create({
     flex: 5,
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  labelText: {
-    fontSize: 18,
-    fontFamily: 'serif',
   },
   totallabelText: {
     fontSize: 30,
